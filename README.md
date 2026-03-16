@@ -16,13 +16,59 @@ mvn spring-boot:run
   - User: `sa`
   - Password: (blank)
 
-## Tech
-- Spring Boot 3.x
-- Spring Web
-- Spring Data JPA
-- H2 in-memory database
-- Lombok
-
 ## Notes
 - Schema is defined in `schema.sql`; data in `data.sql`.
 - JPA `ddl-auto` is disabled so SQL owns the schema.
+#
+# Coding Exercise
+
+Implement a simple banking API with **Accounts**, **Balances**, and **Transfers**. The project is preloaded with H2, JPA, and sample data.
+
+## Entities & Tables
+
+### Account (`accounts`)
+- id
+- name
+- accountType (CA | SA)
+- currency
+- createdAt
+- updatedAt
+
+### AccountBalance (`account_balances`)
+- accountId (FK 1:1)
+- balance
+- createdAt
+- updatedAt
+
+### Transfer (`transfers`)
+- id
+- fromAccountId
+- toAccountId
+- amount
+- currency
+- transferDateTime
+- createdAt
+- updatedAt
+
+## What to Build
+1. **Get Account Balance** – `GET /accounts/{id}/balance`
+2. **Transfer Funds** – `POST /transfers`
+
+## Business Rules
+- Accounts must exist and be different
+- Amount > 0, up to 2 decimal places
+- No overdrafts
+- Must use same currency
+- Persist Transfer record
+
+## Non-Functional
+- Use proper HTTP status codes & JSON errors
+- Add basic unit tests
+
+## Notes
+- H2 console: `/h2-console`
+- JDBC: `jdbc:h2:mem:bankdb`
+- User: `sa`, password: *(blank)*
+- Schema: `schema.sql`, seed: `data.sql`
+
+Good luck! 🚀
