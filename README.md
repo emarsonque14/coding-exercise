@@ -27,7 +27,8 @@ Implement a simple banking API with **Accounts**, **Balances**, and **Transfers*
 ## Entities & Tables
 
 ### Account (`accounts`)
-- id
+- id (PK)
+- accountId
 - name
 - accountType (CA | SA)
 - currency
